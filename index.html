@@ -662,6 +662,129 @@
   .corner::before{top:-6px; left:-8px; border-right:0; border-bottom:0}
   .corner::after{bottom:-6px; right:-8px; border-left:0; border-top:0}
 
+
+  /* ====== ARCHIVE / LIVE PULL ====== */
+  .archive-section{
+    padding:96px 0 80px;
+    background:
+      linear-gradient(180deg, #0b0b13 0%, #08080c 100%);
+    border-top:1px solid var(--line);
+    position:relative;
+  }
+  .archive-section::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,255,255,.012) 2px, rgba(255,255,255,.012) 3px);
+    pointer-events:none;
+  }
+  .archive-headline{
+    font-family:var(--display);
+    font-size:clamp(48px, 8vw, 96px);
+    line-height:.95;
+    margin:8px 0 18px;
+    color:var(--ink);
+    letter-spacing:-1px;
+    font-weight:normal;
+  }
+  .archive-headline em{
+    color:var(--pink);
+    font-style:italic;
+    text-shadow:0 0 24px rgba(255,46,147,.4);
+  }
+  .archive-lead{
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--ink-dim);
+    margin:0 0 36px;
+    max-width:680px;
+    line-height:1.6;
+  }
+  .archive-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    margin-bottom:28px;
+  }
+  @media (max-width:720px){
+    .archive-grid{ grid-template-columns:repeat(2, 1fr); gap:10px; }
+  }
+  .archive-slot{
+    position:relative;
+    aspect-ratio:1/1;
+    background:#15151c;
+    border:1px solid var(--line);
+    overflow:hidden;
+    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+    opacity:0;
+    animation:slotIn .6s forwards;
+  }
+  .archive-slot:nth-child(1){ animation-delay:0ms }
+  .archive-slot:nth-child(2){ animation-delay:80ms }
+  .archive-slot:nth-child(3){ animation-delay:160ms }
+  .archive-slot:nth-child(4){ animation-delay:240ms }
+  .archive-slot:nth-child(5){ animation-delay:320ms }
+  .archive-slot:nth-child(6){ animation-delay:400ms }
+  @keyframes slotIn{ to { opacity:1 } }
+  .archive-slot:hover{
+    border-color:var(--pink);
+    transform:translateY(-3px);
+    box-shadow:0 8px 24px rgba(255,46,147,.18), 0 0 0 1px var(--pink);
+  }
+  .archive-slot img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    background:#0a0a0e;
+    display:block;
+    transition:opacity .45s ease, transform 8s ease;
+    transform:scale(1.04);
+  }
+  .archive-slot:hover img{
+    transform:scale(1.0);
+  }
+  .archive-slot.swapping img{
+    opacity:0;
+    transition:opacity .35s ease;
+  }
+  .archive-tag{
+    position:absolute;
+    top:8px;
+    right:8px;
+    z-index:2;
+    font-family:var(--mono);
+    font-size:10px;
+    color:var(--acid);
+    background:rgba(0,0,0,.78);
+    padding:3px 7px;
+    border:1px solid var(--acid);
+    letter-spacing:1.5px;
+    pointer-events:none;
+    text-shadow:0 0 8px rgba(232,255,0,.5);
+  }
+  .archive-counter{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ink-muted);
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+  }
+  .archive-counter b{
+    color:var(--acid);
+    font-weight:normal;
+  }
+  .counter-blink{
+    color:var(--pink);
+    animation:blinkPulse 1.4s infinite ease-in-out;
+    display:inline-block;
+  }
+  @keyframes blinkPulse{
+    0%, 100%{ opacity:1 }
+    50%{ opacity:.2 }
+  }
+
 </style>
 </head>
 <body>
@@ -697,6 +820,7 @@
       <a href="#revival">REVIVAL</a>
       <a href="#why">WHY $FEETCOIN</a>
       <a href="#proof">MEMES</a>
+      <a href="#archive">ARCHIVE</a>
       <a href="#buy">BUY</a>
       <a href="#roadmap">ROADMAP</a>
       <a href="#faq">FAQ</a>
@@ -732,7 +856,7 @@
       </p>
 
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="https://jup.ag/" target="_blank" rel="noopener">
+        <a class="btn btn-primary" href="https://jup.ag/?sell=7CPBU6CL7GpjzM2DRr7HVoy7TGJxvHkPHWxfvEZypump" target="_blank" rel="noopener">
           BUY $FEETCOIN ON JUPITER <span class="arrow">→</span>
         </a>
         <a class="btn btn-ghost" href="https://dexscreener.com/solana/4hq8NKcDZ8fgqc1ttfXwfQkVR13hLw5EYAGNQvtyPMJX" target="_blank" rel="noopener">
@@ -1078,6 +1202,29 @@
     </div>
   </section>
 
+
+  <!-- ARCHIVE / LIVE PULL -->
+  <section id="archive" class="archive-section">
+    <div class="wrap">
+      <span class="eyebrow">▸ ARCHIVE / LIVE PULL</span>
+      <h2 class="archive-headline">160 RECEIPTS.<br/><em>ZERO SHAME.</em></h2>
+      <p class="archive-lead">Six random pulls from <strong style="color:var(--ink)">/usr/sole/archive</strong>. They cycle on their own &mdash; wait a beat, the wall keeps coming. Refresh for a fresh six.</p>
+
+      <div class="archive-grid">
+        <div class="archive-slot"><span class="archive-tag">#---</span><img alt="feetcoin community meme" loading="lazy"></div>
+        <div class="archive-slot"><span class="archive-tag">#---</span><img alt="feetcoin community meme" loading="lazy"></div>
+        <div class="archive-slot"><span class="archive-tag">#---</span><img alt="feetcoin community meme" loading="lazy"></div>
+        <div class="archive-slot"><span class="archive-tag">#---</span><img alt="feetcoin community meme" loading="lazy"></div>
+        <div class="archive-slot"><span class="archive-tag">#---</span><img alt="feetcoin community meme" loading="lazy"></div>
+        <div class="archive-slot"><span class="archive-tag">#---</span><img alt="feetcoin community meme" loading="lazy"></div>
+      </div>
+
+      <div class="archive-counter">
+        <span class="counter-blink">●</span> LIVE FEED &nbsp;//&nbsp; PULLING FROM <b id="archive-total">160</b> MEMES &nbsp;//&nbsp; SHOWING 6 &nbsp;//&nbsp; AUTO-CYCLE 4.5s
+      </div>
+    </div>
+  </section>
+
   <!-- HOW TO BUY -->
   <section id="buy">
     <div class="wrap">
@@ -1103,7 +1250,7 @@
         <div class="buy-step">
           <div class="num">03</div>
           <h4>FIND THE FEET</h4>
-          <p>Open the chart, copy the verified contract address, swap on <a style="color:var(--acid)" href="https://jup.ag/" target="_blank" rel="noopener">Jupiter</a>. <strong style="color:var(--ink)">Always confirm Jupiter Strict ✓.</strong></p>
+          <p>Open the chart, copy the verified contract address, swap on <a style="color:var(--acid)" href="https://jup.ag/?sell=7CPBU6CL7GpjzM2DRr7HVoy7TGJxvHkPHWxfvEZypump" target="_blank" rel="noopener">Jupiter</a>. <strong style="color:var(--ink)">Always confirm Jupiter Strict ✓.</strong></p>
         </div>
         <div class="buy-step">
           <div class="num">04</div>
@@ -1114,7 +1261,7 @@
 
       <div style="margin-top:22px; display:flex; flex-wrap:wrap; gap:12px;">
         <a class="btn btn-primary" href="https://dexscreener.com/solana/4hq8NKcDZ8fgqc1ttfXwfQkVR13hLw5EYAGNQvtyPMJX" target="_blank" rel="noopener">GET CONTRACT ADDRESS <span class="arrow">→</span></a>
-        <a class="btn btn-ghost" href="https://jup.ag/" target="_blank" rel="noopener">OPEN JUPITER <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="https://jup.ag/?sell=7CPBU6CL7GpjzM2DRr7HVoy7TGJxvHkPHWxfvEZypump" target="_blank" rel="noopener">OPEN JUPITER <span class="arrow">→</span></a>
       </div>
     </div>
   </section>
@@ -1227,7 +1374,7 @@
     <div class="wrap">
       <h2>STEP <em>IN.</em></h2>
       <p>The chart flatlined. The community didn't. The website you're reading exists because somebody refused to let a good meme die. Now it's your move.</p>
-      <a class="btn btn-primary" href="https://jup.ag/" target="_blank" rel="noopener">BUY $FEETCOIN ON JUPITER <span class="arrow">→</span></a>
+      <a class="btn btn-primary" href="https://jup.ag/?sell=7CPBU6CL7GpjzM2DRr7HVoy7TGJxvHkPHWxfvEZypump" target="_blank" rel="noopener">BUY $FEETCOIN ON JUPITER <span class="arrow">→</span></a>
       <div class="ascii-foot" style="margin-top:48px">
    __    __    __    __    __    __    __    __
  _/  \__/  \__/  \__/  \__/  \__/  \__/  \__/  \__
@@ -1246,7 +1393,7 @@
     </div>
     <div style="display:flex; flex-direction:column; gap:10px; text-align:right">
       <a href="https://dexscreener.com/solana/4hq8NKcDZ8fgqc1ttfXwfQkVR13hLw5EYAGNQvtyPMJX" target="_blank" rel="noopener">↗ DEXSCREENER</a>
-      <a href="https://jup.ag/" target="_blank" rel="noopener">↗ JUPITER</a>
+      <a href="https://jup.ag/?sell=7CPBU6CL7GpjzM2DRr7HVoy7TGJxvHkPHWxfvEZypump" target="_blank" rel="noopener">↗ JUPITER</a>
       <a href="https://phantom.app/" target="_blank" rel="noopener">↗ PHANTOM WALLET</a>
       <span style="color:var(--ink-muted); font-size:11px; letter-spacing:.2em; margin-top:8px">/// END OF LINE</span>
     </div>
@@ -1279,6 +1426,66 @@
       setTimeout(()=>el.remove(),900);
     }
   });
+
+  // ====== ARCHIVE / LIVE PULL ======
+  (function(){
+    const MEME_FILES = ["feetcoin_beyonce.jpg","feetcoin_meme1.jpg","feetcoin_meme10.jpg","feetcoin_meme11.jpg","feetcoin_meme12.jpg","feetcoin_meme13.jpg","feetcoin_meme14.jpg","feetcoin_meme15.jpg","feetcoin_meme16.jpg","feetcoin_meme17.jpg","feetcoin_meme2.jpg","feetcoin_meme3-1.jpg","feetcoin_meme3.jpg","feetcoin_meme4.jpg","feetcoin_meme5-orig.jpg","feetcoin_meme5.jpg","feetcoin_meme6-1.jpg","feetcoin_meme6.jpg","feetcoin_meme7.jpg","feetcoin_meme8.jpg","feetcoin_meme9.jpg","feetcoin_meme_musk.jpg","feetcoin_shaq.jpg","photo_2025-02-06 12.59.01.jpeg","photo_2025-02-06 13.01.22.jpeg","photo_2025-02-06 13.01.27.jpeg","photo_2025-02-06 13.01.34.jpeg","photo_2025-02-06 13.02.18.jpeg","photo_2025-02-06 13.02.29.jpeg","photo_2025-02-06 13.02.34.jpeg","photo_2025-02-06 13.02.45.jpeg","photo_2025-02-06 13.02.53.jpeg","photo_2025-02-06 13.03.02.jpeg","photo_2025-02-06 13.03.09.jpeg","photo_2025-02-06 13.03.15.jpeg","photo_2025-02-06 13.03.45.jpeg","photo_2025-02-06 13.03.55.jpeg","photo_2025-02-06 13.04.14.jpeg","photo_2025-02-06 13.04.22.jpeg","photo_2025-02-06 13.04.27.jpeg","photo_2025-02-06 13.04.32.jpeg","photo_2025-02-06 13.04.44.jpeg","photo_2025-02-06 13.04.52.jpeg","photo_2025-02-06 13.04.59.jpeg","photo_2025-02-06 13.05.03.jpeg","photo_2025-02-06 13.05.08.jpeg","photo_2025-02-06 13.05.16.jpeg","photo_2025-02-06 13.05.24.jpeg","photo_2025-02-06 13.05.33.jpeg","photo_2025-02-06 13.05.50.jpeg","photo_2025-02-06 13.05.54.jpeg","photo_2025-02-06 13.06.11.jpeg","photo_2025-02-06 13.06.17.jpeg","photo_2025-02-06 13.06.24.jpeg","photo_2025-02-06 13.06.34.jpeg","photo_2025-02-06 13.06.39.jpeg","photo_2025-02-06 13.06.46.jpeg","photo_2025-02-06 13.06.51.jpeg","photo_2025-02-06 13.06.54.jpeg","photo_2025-02-06 13.06.57.jpeg","photo_2025-02-06 13.07.00.jpeg","photo_2025-02-06 13.07.05.jpeg","photo_2025-02-06 13.07.13.jpeg","photo_2025-02-06 13.07.16.jpeg","photo_2025-02-06 13.07.22.jpeg","photo_2025-02-06 13.07.36.jpeg","photo_2025-02-06 13.07.40.jpeg","photo_2025-02-06 13.07.43.jpeg","photo_2025-02-06 13.07.47.jpeg","photo_2025-02-06 13.07.51.jpeg","photo_2025-02-06 13.07.55.jpeg","photo_2025-02-06 13.08.06.jpeg","photo_2025-02-06 13.08.27.jpeg","photo_2025-02-06 13.08.30.jpeg","photo_2025-02-06 13.08.33.jpeg","photo_2025-02-06 13.08.43.jpeg","photo_2025-02-06 13.08.50.jpeg","photo_2025-02-06 13.08.55.jpeg","photo_2025-02-06 13.08.58.jpeg","photo_2025-02-06 13.09.04.jpeg","photo_2025-02-06 13.09.13.jpeg","photo_2025-02-06 13.09.16.jpeg","photo_2025-02-06 13.09.20.jpeg","photo_2025-02-06 13.09.28.jpeg","photo_2025-02-06 13.09.38.jpeg","photo_2025-02-06 13.09.57.jpeg","photo_2025-02-06 13.10.06.jpeg","photo_2025-02-06 13.10.25.jpeg","photo_2025-02-06 13.10.30.jpeg","photo_2025-02-06 13.10.35.jpeg","photo_2025-02-06 13.10.57.jpeg","photo_2025-02-06 13.11.03.jpeg","photo_2025-02-06 13.11.13.jpeg","photo_2025-02-06 13.11.20.jpeg","photo_2025-02-06 13.11.29.jpeg","photo_2025-02-06 13.11.34.jpeg","photo_2025-02-06 13.11.41.jpeg","photo_2025-02-06 13.11.46.jpeg","photo_2025-02-06 13.11.52.jpeg","photo_2025-02-06 13.12.02.jpeg","photo_2025-02-06 13.12.10.jpeg","photo_2025-02-06 13.12.20.jpeg","photo_2025-02-06 13.12.27.jpeg","photo_2025-02-06 13.12.32.jpeg","photo_2025-02-06 13.12.36.jpeg","photo_2025-02-06 13.12.44.jpeg","photo_2025-02-06 13.12.52.jpeg","photo_2025-02-06 13.13.05.jpeg","photo_2025-02-06 13.13.31.jpeg","photo_2025-02-06 13.13.37.jpeg","photo_2025-02-06 13.13.42.jpeg","photo_2025-02-06 13.13.45.jpeg","photo_2025-02-06 13.13.49.jpeg","photo_2025-02-06 13.13.58.jpeg","photo_2025-02-06 13.14.22.jpeg","photo_2025-02-06 13.14.31.jpeg","photo_2025-02-06 13.14.36.jpeg","photo_2025-02-06 13.14.44.jpeg","photo_2025-02-06 13.15.02.jpeg","photo_2025-02-06 13.15.06.jpeg","photo_2025-02-06 13.15.08.jpeg","photo_2025-02-06 13.15.38.jpeg","photo_2025-02-06 13.15.42.jpeg","photo_2025-02-06 13.15.50.jpeg","photo_2025-02-06 13.15.53.jpeg","photo_2025-02-06 13.15.57.jpeg","photo_2025-02-06 13.16.00.jpeg","photo_2025-02-06 13.16.03.jpeg","photo_2025-02-06 13.16.06.jpeg","photo_2025-02-06 13.16.10.jpeg","photo_2025-02-06 13.16.15.jpeg","photo_2025-02-06 13.16.19.jpeg","photo_2025-02-06 13.16.28.jpeg","photo_2025-02-06 13.19.17.jpeg","photo_2025-02-06 13.19.22.jpeg","photo_2025-02-06 13.19.26.jpeg","photo_2025-02-06 13.19.30.jpeg","photo_2025-02-06 13.19.33.jpeg","photo_2025-02-06 13.19.35.jpeg","photo_2025-02-06 13.19.39.jpeg","photo_2025-02-06 13.19.42.jpeg","photo_2025-02-06 13.19.45.jpeg","photo_2025-02-06 13.19.48.jpeg","photo_2025-02-06 13.19.50.jpeg","photo_2025-02-06 13.19.54.jpeg","photo_2025-02-06 13.19.57.jpeg","photo_2025-02-06 13.20.00.jpeg","photo_2025-02-06 13.20.03.jpeg","photo_2025-02-06 13.20.06.jpeg","photo_2025-02-06 13.20.09.jpeg","photo_2025-02-06 13.20.12.jpeg","photo_2025-02-06 13.20.16.jpeg","photo_2025-02-06 13.20.20.jpeg","photo_2025-02-06 13.20.23.jpeg","photo_2025-02-06 13.20.26.jpeg","photo_2025-02-06 13.20.30.jpeg","photo_2025-02-06 13.20.32.jpeg","photo_2025-02-06 13.20.35.jpeg","photo_2025-02-06 13.20.41.jpeg","photo_2025-02-06 13.20.43.jpeg"];
+    const BASE = 'https://feetcoin.lol/images/';
+    const ROTATE_MS = 4500;
+
+    function pickUnused(usedSet){
+      let candidate;
+      let tries = 0;
+      do {
+        candidate = MEME_FILES[Math.floor(Math.random() * MEME_FILES.length)];
+        tries++;
+      } while (usedSet.has(candidate) && tries < 50);
+      return candidate;
+    }
+
+    function setSlot(slot, file){
+      const img = slot.querySelector('img');
+      const tag = slot.querySelector('.archive-tag');
+      const idx = MEME_FILES.indexOf(file) + 1;
+      img.src = BASE + encodeURIComponent(file);
+      slot.dataset.file = file;
+      if (tag) tag.textContent = '#' + String(idx).padStart(3, '0');
+    }
+
+    function init(){
+      const slots = document.querySelectorAll('.archive-slot');
+      if (!slots.length) return;
+      const used = new Set();
+      slots.forEach(slot => {
+        const file = pickUnused(used);
+        used.add(file);
+        setSlot(slot, file);
+      });
+      // Update total counter
+      const total = document.getElementById('archive-total');
+      if (total) total.textContent = String(MEME_FILES.length);
+
+      // Cycle one slot at a time
+      setInterval(() => {
+        const slotsArr = Array.from(document.querySelectorAll('.archive-slot'));
+        const slot = slotsArr[Math.floor(Math.random() * slotsArr.length)];
+        const usedNow = new Set(slotsArr.map(s => s.dataset.file));
+        const newFile = pickUnused(usedNow);
+        slot.classList.add('swapping');
+        setTimeout(() => {
+          setSlot(slot, newFile);
+          slot.classList.remove('swapping');
+        }, 350);
+      }, ROTATE_MS);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+
 </script>
 </body>
 </html>
